@@ -1,0 +1,218 @@
+<div class="container">
+  <div class="cds--grid"> 
+    <div class="cds--row">
+        <div class="cds--col-lg-8 cds--col-md-8 cds--col-sm-8">
+      <form [formGroup]="signUp" (ngSubmit)="onSubmit()">
+        <br />
+        <!-- Accordion --> 
+        <h4>Accordion</h4>
+        <ibm-accordion align="end" size="lg" expanded="true">
+          <ibm-accordion-item title="Description" (selected)="selected()"
+            >Lorem ipsum dolor sit amet</ibm-accordion-item
+          >
+          <ibm-accordion-item title="Disabeled" [disabled]="disabled1"
+            >this is a disabeled button</ibm-accordion-item>
+        </ibm-accordion>
+        <br /> 
+        
+        <!-- BreadCrumb --> 
+        <h4>BreadCrumb</h4>
+        <ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
+          <ibm-breadcrumb-item href="#1"> Breadcrumb 1 </ibm-breadcrumb-item>
+          <ibm-breadcrumb-item href="#2"> Breadcrumb 2 </ibm-breadcrumb-item>
+        </ibm-breadcrumb>
+        <br /> 
+        
+        <!-- CheckBox --> 
+        <h4>CheckBox</h4>
+        <fieldset class="bx--fieldset">
+          <legend class="bx--label">Label</legend>
+          <ibm-checkbox
+            [checked]="true"
+            [hideLabel]="hideLabel"
+            (change)="onChange()"
+          >
+            Checkbox
+          </ibm-checkbox>
+          <ibm-checkbox
+            [indeterminate]="true"
+            (change)="onChange()"
+            [hideLabel]="hideLabel"
+            (indeterminateChange)="onIndeterminateChange()"
+          >
+            Indeterminate checkbox
+          </ibm-checkbox>
+          <ibm-checkbox
+            [disabled]="disabled1"
+            (change)="onChange()"
+            [hideLabel]="hideLabel"
+            (indeterminateChange)="onIndeterminateChange()"
+          >
+            Disabled checkbox
+          </ibm-checkbox>
+        </fieldset>
+
+        <ibm-checkbox [(ngModel)]="model"> ngModel checkbox </ibm-checkbox>
+
+        <div style="display: flex; flex-direction: column; width: 150px">
+          <button (click)="toggleModel()">Set model</button>
+          Checked: {{ model }}
+        </div>
+        
+        
+        
+<!--DropDrown--> 
+<h4>DropDown</h4>
+<ibm-dropdown placeholder="one">
+    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+</ibm-dropdown>  
+
+
+<!--DatePicker--> 
+<h4>DatePicker</h4>
+<ibm-date-picker
+[label]=label
+[placeholder]=placeholder
+size="sm"
+[disabled]=disabled
+[value]=value
+(valueChange)="valueChange()">
+</ibm-date-picker> 
+
+
+<!--List-->  
+<h4>List</h4>
+<ol ibmList>
+    <li ibmListItem>One</li>
+    <li ibmListItem>Two</li>
+    <li ibmListItem>Three</li>
+</ol>
+<p>Unordered List</p>
+<ul ibmList>
+    <li ibmListItem>One</li>
+    <li ibmListItem>Two</li>
+    <li ibmListItem>Three</li>
+</ul>
+  
+
+<!--Loading-->  
+<h4>Loading</h4>
+<ibm-loading [isActive]="true" size="sm" [overlay]="false"></ibm-loading> 
+
+<!--Notification-->  
+<h4>Notification</h4>
+<ibm-notification [notificationObj]="{
+    type: 'error',
+    title: 'Sample notification',
+    message: 'Sample error message',
+    showClose: true,
+    lowContrast: false}">
+</ibm-notification> 
+
+<!--Number--> 
+<h4>Number</h4>
+<ibm-number
+				label="Number Input Label"
+				[min]="min"
+				[max]="max"
+				size="sm"
+				[disabled]=disabled>
+			</ibm-number> 
+            
+<!--Time Picker-->  
+<h4>Time Picker</h4>
+<div class="bx--form-item">
+    <div class="bx--time-picker">
+        <ibm-timepicker-select>
+            <option selected value="AM">AM</option>
+            <option value="PM">PM</option>
+        </ibm-timepicker-select>
+        <ibm-timepicker-select>
+            <option selected value="Time Zone 1">Time Zone 1</option>
+            <option value="Time Zone 2">Time Zone 2</option>
+        </ibm-timepicker-select>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--Modal
+<app-data-passing-modal
+				modalText="This is Modal"
+				size="sm">
+			</app-data-passing-modal>
+			<ibm-placeholder></ibm-placeholder> 
+            <hr>-->
+ <!--USERNAME && Password--> 
+ <h4>UserLogin</h4>
+        <div formGroupName="userData">
+          <div class="form-group">
+            <ibm-label
+              >UserName
+              <input
+                ibmText
+                type="email"
+                name="username"
+                formControlName="username"
+              />
+            </ibm-label>
+            <span
+              *ngIf="
+                !signUp.get('userData.username').valid &&
+                signUp.get('userData.username').touched
+              "
+              class="help-block"
+              >Please enter the valid username!</span
+            >
+          </div>
+          <div class="form-group">
+            <ibm-label
+              >Password:
+              <input
+                ibmText
+                type="password"
+                name="password"
+                formControlName="password"
+              />
+            </ibm-label>
+            <span
+              *ngIf="
+                !signUp.get('userData.password').valid &&
+                signUp.get('userData.password').touched
+              "
+              class="help-block"
+              >Please enter the valid Password!</span
+            >
+          </div>
+        </div>  
+        <hr>
+        <span *ngIf="!signUp.valid && signUp.touched" class="help-block"
+          >Please enter the valid Data!</span>
+
+        <app-button-types></app-button-types>
+      </form> 
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+
+ <!-- <div formGroupName="userData"> 
+                    <div class="form-group"> 
+                    <label>Username:</label> 
+                    <input type="email" name="username" class="form-control" formControlName="username">  
+                 <span *ngIf="!signUp.get('userData.username').valid && signUp.get('userData.username').touched" class="help-block">Please enter the valid username!</span>     
+                </div> 
+                    <div class="form-group">
+                    <label>Password:</label> 
+                    <input type="password" name="password" class="form-control" formControlName="password">   
+                    <span *ngIf="!signUp.get('userData.password').valid && signUp.get('userData.password').touched" class="help-block">Please enter the valid Password!</span>     
+        
+                    </div> 
+            </div>-->

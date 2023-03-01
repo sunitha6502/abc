@@ -1,0 +1,10 @@
+$feature-flags: (
+  grid-columns-16: true
+);
+@use '@carbon/layout';
+
+.app-root {
+  margin-bottom: layout.$spacing-05;
+  width: layout.rem(24px);
+  height: layout.rem(24px);
+}
